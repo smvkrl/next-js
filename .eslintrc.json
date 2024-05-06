@@ -10,6 +10,7 @@
     "project": true,
     "tsconfigRootDir": "__dirname"
   },
-  "root": true
+  "root": true,
+  "exclude": ["node_modules", "/*.mjs"]
 }
 
