@@ -1,9 +1,8 @@
-import { ReactElement } from 'react';
 import { HTagProps } from './Htag.props';
 import { EHtag } from '@/app/enums/EHtag';
 import styles from './Htag.module.css';
 
-function Htag({ tag, children }: HTagProps): ReactElement {
+function Htag({ tag, children }: HTagProps) {
   switch (tag) {
     case EHtag.H1:
       return <h1 className={styles.h1}>{children}</h1>;

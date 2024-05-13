@@ -1,9 +1,9 @@
 import { EButtArr } from '@/app/enums/EButtArr';
-import { EButtView } from '@/app/enums/EButtView';
+import { EView } from '@/app/enums/EView';
 import { ButtonHTMLAttributes } from 'react';
 
 export default interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
-  view?: EButtView;
+  view?: EView;
   arrow?: EButtArr;
 }

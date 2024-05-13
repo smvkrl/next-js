@@ -1,4 +1,4 @@
-export const enum EButtView {
+export const enum EView {
   Primary = 'primary',
   Ghost = 'ghost',
 }

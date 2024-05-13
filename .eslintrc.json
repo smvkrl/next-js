@@ -11,6 +11,6 @@
     "tsconfigRootDir": "__dirname"
   },
   "root": true,
-  "exclude": ["node_modules", "/*.mjs"]
+  "ignorePatterns": ["node_modules", "/*.mjs"]
 }
 

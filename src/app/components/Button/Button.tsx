@@ -1,11 +1,11 @@
 import ButtonProps from './Button.props';
 import styles from './Button.module.css';
 import { EButtArr } from '@/app/enums/EButtArr';
-import { EButtView } from '@/app/enums/EButtView';
+import { EView } from '@/app/enums/EView';
 import Arrow from './arrow.svg';
 
 function Button({
-  view = EButtView.Primary,
+  view = EView.Primary,
   arrow = EButtArr.None,
   children,
   ...props
