@@ -1,5 +1,5 @@
-import { EButtArr } from '@/app/enums/EButtArr';
-import { EView } from '@/app/enums/EView';
+import { EButtArr } from '@/enums/EButtArr';
+import { EView } from '@/enums/EView';
 import { ButtonHTMLAttributes } from 'react';
 
 export default interface ButtonProps

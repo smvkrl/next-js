@@ -1,4 +1,4 @@
-import { ESize } from '@/app/enums/ESize';
+import { ESize } from '@/enums/ESize';
 import PtagProps from './Ptag.props';
 import styles from './Ptag.module.css';
 

@@ -1,4 +1,4 @@
-import { ESize } from '@/app/enums/ESize';
+import { ESize } from '@/enums/ESize';
 import { HTMLAttributes } from 'react';
 
 export default interface PtagProps

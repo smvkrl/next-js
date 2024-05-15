@@ -1,4 +1,4 @@
-import { EHtag } from '@/app/enums/EHtag';
+import { EHtag } from '@/enums/EHtag';
 import { ReactNode } from 'react';
 
 export interface HTagProps {

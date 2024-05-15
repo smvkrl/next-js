@@ -1,5 +1,5 @@
 import { HTagProps } from './Htag.props';
-import { EHtag } from '@/app/enums/EHtag';
+import { EHtag } from '@/enums/EHtag';
 import styles from './Htag.module.css';
 
 function Htag({ tag, children }: HTagProps) {

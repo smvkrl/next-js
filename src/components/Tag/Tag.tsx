@@ -1,4 +1,4 @@
-import { ESize } from '@/app/enums/ESize';
+import { ESize } from '@/enums/ESize';
 import styles from './Tag.module.css';
 import TagProps from './Tag.props';
 

@@ -1,7 +1,7 @@
 import ButtonProps from './Button.props';
 import styles from './Button.module.css';
-import { EButtArr } from '@/app/enums/EButtArr';
-import { EView } from '@/app/enums/EView';
+import { EButtArr } from '@/enums/EButtArr';
+import { EView } from '@/enums/EView';
 import Arrow from './arrow.svg';
 
 function Button({
