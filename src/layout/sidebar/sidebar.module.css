@@ -1,0 +1,4 @@
+.sidebar {
+  grid-area: sidebar;
+  list-style-type: none;
+}

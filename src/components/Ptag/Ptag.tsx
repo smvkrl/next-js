@@ -1,6 +1,6 @@
-import { ESize } from '@/enums/ESize';
-import PtagProps from './Ptag.props';
-import styles from './Ptag.module.css';
+import { ESize } from '@/enums/size';
+import PtagProps from './ptag.props';
+import styles from './ptag.module.css';
 
 function Ptag({ size = ESize.M, children, ...props }: PtagProps) {
   const cn = `${styles.p} ${styles[size]}`;

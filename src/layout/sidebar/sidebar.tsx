@@ -1,8 +1,9 @@
-import styles from './Sidebar.module.css';
+import { HTMLAttributes } from 'react';
+import styles from './sidebar.module.css';
 
-function Sidebar() {
+function Sidebar({ ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <nav>
+    <nav {...props}>
       <ul className={styles.sidebar}>
         <li>School</li>
         <li>Menu</li>

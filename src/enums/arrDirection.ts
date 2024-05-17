@@ -1,4 +1,4 @@
-export const enum EButtArr {
+export const enum EArrDirection {
   Right = 'right',
   Down = 'down',
   None = 'none',

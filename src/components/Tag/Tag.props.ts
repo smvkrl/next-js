@@ -1,5 +1,5 @@
-import { EColor } from '@/enums/EColor';
-import { ESize } from '@/enums/ESize';
+import { EColor } from '@/enums/color';
+import { ESize } from '@/enums/size';
 import { HTMLAttributes } from 'react';
 
 export default interface TagProps extends HTMLAttributes<HTMLDivElement> {

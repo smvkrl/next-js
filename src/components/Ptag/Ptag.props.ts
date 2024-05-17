@@ -1,4 +1,4 @@
-import { ESize } from '@/enums/ESize';
+import { ESize } from '@/enums/size';
 import { HTMLAttributes } from 'react';
 
 export default interface PtagProps

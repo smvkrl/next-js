@@ -1,12 +1,12 @@
-import ButtonProps from './Button.props';
-import styles from './Button.module.css';
-import { EButtArr } from '@/enums/EButtArr';
-import { EView } from '@/enums/EView';
+import ButtonProps from './button.props';
+import styles from './button.module.css';
+import { EArrDirection } from '@/enums/arrDirection';
+import { EView } from '@/enums/view';
 import Arrow from './arrow.svg';
 
 function Button({
   view = EView.Primary,
-  arrow = EButtArr.None,
+  arrow = EArrDirection.None,
   children,
   ...props
 }: ButtonProps) {
@@ -14,7 +14,7 @@ function Button({
   return (
     <button className={buttonStyle} {...props}>
       {children}
-      {arrow !== EButtArr.None ? (
+      {arrow !== EArrDirection.None ? (
         <span className={`${styles.arrow} ${styles[arrow]}`}>
           <Arrow />
         </span>

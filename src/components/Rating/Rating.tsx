@@ -1,8 +1,8 @@
 'use client';
 
 import { KeyboardEvent, useRef, useState } from 'react';
-import styles from './Rating.module.css';
-import RatingProps from './Rating.props';
+import styles from './rating.module.css';
+import RatingProps from './rating.props';
 import StarIcon from './star.svg';
 
 function Rating({
@@ -43,7 +43,7 @@ function Rating({
         <span
           key={i}
           className={cn}
-          ref={(r) => ratingArrayRef.current.push(r)}
+          // ref={(r) => ratingArrayRef.current.push(r)}
           onMouseEnter={() => isEditable && setTempRating(i + 1)}
           onClick={handleClick}
           tabIndex={isEditable ? 0 : -1}

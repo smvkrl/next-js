@@ -1,6 +1,6 @@
-import { ESize } from '@/enums/ESize';
-import styles from './Tag.module.css';
-import TagProps from './Tag.props';
+import { ESize } from '@/enums/size';
+import styles from './tag.module.css';
+import TagProps from './tag.props';
 
 function Tag({
   size = ESize.M,
