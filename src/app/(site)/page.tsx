@@ -1,6 +1,4 @@
-'use client';
-
-import { EArrDirection } from '@/enums/arrDirection';
+import { EArrDirection } from '@/enums/arr-direction';
 import { EView } from '@/enums/view';
 import { EColor } from '@/enums/color';
 import { EHtag } from '@/enums/htag';
@@ -8,15 +6,11 @@ import { ESize } from '@/enums/size';
 import Htag from '@/components/htag/htag';
 import Tag from '@/components/tag/tag';
 import Rating from '@/components/rating/rating';
-import Ptag from '@/components/Ptag/ptag';
+import Ptag from '@/components/ptag/ptag';
 import Button from '@/components/button/button';
 import styles from './page.module.css';
 
-function click(rating: number) {
-  console.log(rating);
-}
-
-export default function Home() {
+function Home() {
   return (
     <>
       <Htag tag={EHtag.H1}>Heading primary</Htag>
@@ -27,7 +21,7 @@ export default function Home() {
         <Tag>Test2</Tag>
         <Tag color={EColor.Green}>Test3</Tag>
       </div>
-      <Rating rating={4} isEditable={true} setRating={click} />
+      <Rating rating={4} isEditable={true} />
       <Ptag size={ESize.L}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
         velit rem qui voluptate? Facere reiciendis ipsum quidem suscipit vitae
@@ -43,4 +37,5 @@ export default function Home() {
     </>
   );
 }
+export default Home;
 

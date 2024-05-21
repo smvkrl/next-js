@@ -1,6 +1,6 @@
 import ButtonProps from './button.props';
 import styles from './button.module.css';
-import { EArrDirection } from '@/enums/arrDirection';
+import { EArrDirection } from '@/enums/arr-direction';
 import { EView } from '@/enums/view';
 import Arrow from './arrow.svg';
 

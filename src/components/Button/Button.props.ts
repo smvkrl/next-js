@@ -1,4 +1,4 @@
-import { EArrDirection } from '@/enums/arrDirection';
+import { EArrDirection } from '@/enums/arr-direction';
 import { EView } from '@/enums/view';
 import { ButtonHTMLAttributes } from 'react';
 
