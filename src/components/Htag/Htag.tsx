@@ -1,6 +1,6 @@
 import { HTagProps } from './htag.props';
 import { EHtag } from '@/enums/htag';
-import styles from './Htag.module.css';
+import styles from './htag.module.css';
 
 function Htag({ tag, children }: HTagProps) {
   switch (tag) {

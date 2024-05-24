@@ -11,9 +11,9 @@ export default async function getMenu(
     }),
     headers: new Headers({ 'content-type': 'application/json' }),
   });
-  console.log('revalidating getMenu');
   if (!res.ok) {
     throw new Error('Failed to fetch data: ' + res.statusText);
   }
-  return res.json() as Promise<MenuItem[]>;
+  const data = (await res.json()) as Promise<MenuItem[]>;
+  return data;
 }

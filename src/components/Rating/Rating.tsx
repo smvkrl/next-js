@@ -1,6 +1,6 @@
 'use client';
 
-import { KeyboardEvent, useRef, useState } from 'react';
+import { useState } from 'react';
 import styles from './rating.module.css';
 import RatingProps from './rating.props';
 import StarIcon from './star.svg';
@@ -15,18 +15,18 @@ function Rating({
   const [tempRating, setTempRating] = useState(rating);
   const ratingArray = new Array(5).fill(<></>);
 
-  const ratingArrayRef = useRef<(HTMLSpanElement | null)[]>([]);
+  // const ratingArrayRef = useRef<(HTMLSpanElement | null)[]>([]);
+
+  // function handleKeydown(e: KeyboardEvent) {
+  //   if (!isEditable || !setRating) {
+  //     return;
+  //   }
+  // }
 
   function handleClick() {
     if (isEditable && setRating) {
       setRating(tempRating);
       setRate(tempRating);
-    }
-  }
-
-  function handleKeydown(e: KeyboardEvent) {
-    if (!isEditable || !setRating) {
-      return;
     }
   }
 
@@ -47,7 +47,6 @@ function Rating({
           onMouseEnter={() => isEditable && setTempRating(i + 1)}
           onClick={handleClick}
           tabIndex={isEditable ? 0 : -1}
-          onKeyDown={handleKeydown}
         >
           <StarIcon />
         </span>
