@@ -5,17 +5,14 @@ import { firstLevelMenu } from '@/helpers/first-category';
 import { PageItem } from '@/interfaces/menu.interface';
 import useMenuBuilder from '@/hooks/use-menu-builder';
 import { HTMLAttributes, useState } from 'react';
+import Link from 'next/link';
 
 function Menu({ ...props }: HTMLAttributes<HTMLDivElement>) {
   const { menu, category, setCategory } = useMenuBuilder();
   const [secondCategory, setSecondCategory] = useState<string | null>(null);
 
   function handleSetSecondCategory(cat: string) {
-    if (cat === secondCategory) {
-      setSecondCategory(null);
-    } else {
-      setSecondCategory(cat);
-    }
+    setSecondCategory(cat === secondCategory ? null : cat);
   }
 
   function buildFirstLevel() {
@@ -28,7 +25,9 @@ function Menu({ ...props }: HTMLAttributes<HTMLDivElement>) {
               onClick={() => setCategory(item.id)}
             >
               {item.icon}
-              <span>{item.name}</span>
+              <span>
+                <Link href={`/${item.route}`}>{item.name}</Link>
+              </span>
             </div>
             {item.id === category ? buildSecondLevel() : ''}
           </li>
@@ -68,9 +67,9 @@ function Menu({ ...props }: HTMLAttributes<HTMLDivElement>) {
       <ul>
         {pages.map((p) => (
           <li key={p._id}>
-            <a href={`/${p.alias}`} className={styles.thirdLevel}>
+            <Link href={`/courses/${p.alias}`} className={styles.thirdLevel}>
               {p.category}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

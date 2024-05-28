@@ -9,16 +9,27 @@ import { EHtag } from '@/enums/htag';
 import { EColor } from '@/enums/color';
 import { ESize } from '@/enums/size';
 import { Metadata } from 'next';
+import { firstLevelMenu } from '@/helpers/first-category';
 
 interface IParams {
   params: { alias: string };
 }
 
 export async function generateStaticParams() {
-  const menu = await getMenu(0);
-  return menu.flatMap((item) =>
-    item.pages.map((page) => ({ alias: page.alias })),
-  );
+  let res: { type: string; alias: string }[] = [];
+  for (const firstItem of firstLevelMenu) {
+    const menu = await getMenu(firstItem.id);
+    res = res.concat(
+      menu.flatMap((item) =>
+        item.pages.map((page) => ({
+          type: firstItem.route,
+          alias: page.alias,
+        })),
+      ),
+    );
+  }
+
+  return res;
 }
 
 export async function generateMetadata({ params }: IParams): Promise<Metadata> {
@@ -31,7 +42,7 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
 
 async function PageProducts({ params }: IParams) {
   const page = await getPage(params.alias);
-  if (!page) {
+  if (!page || !params) {
     notFound();
   }
   return (
