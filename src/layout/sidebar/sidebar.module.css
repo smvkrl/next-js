@@ -1,4 +1,6 @@
 .sidebar {
-  /* grid-area: sidebar; */
-  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-content: start;
 }

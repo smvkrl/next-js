@@ -7,10 +7,11 @@ import Arrow from './arrow.svg';
 function Button({
   view = EView.Primary,
   arrow = EArrDirection.None,
+  className,
   children,
   ...props
 }: ButtonProps) {
-  const buttonStyle = `${styles.button} ${styles[view]}`;
+  const buttonStyle = `${className} ${styles.button} ${styles[view]}`;
   return (
     <button className={buttonStyle} {...props}>
       {children}

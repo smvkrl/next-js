@@ -3,15 +3,37 @@ import { ETopLevelCategory } from '@/enums/top-level-category';
 import { MenuItem } from '@/interfaces/menu.interface';
 import { useEffect, useState } from 'react';
 
-export default function useMenuBuilder() {
-  const [category, setCategory] = useState(ETopLevelCategory.Courses);
+export default function useMenuBuilder(
+  firstLevelCategory: ETopLevelCategory = ETopLevelCategory.Courses,
+) {
+  const [firstCat, setCat] = useState(firstLevelCategory);
   const [menu, setMenu] = useState<MenuItem[]>();
   useEffect(() => {
     const menu = async () => {
-      setMenu(await getMenu(category));
+      setMenu(await getMenu(firstCat));
     };
     void menu();
-  }, [category]);
+  }, [firstCat]);
 
-  return { category, menu, setCategory };
+  const [secondCat, setSecondCat] = useState<string | null>(null);
+
+  useEffect(() => {
+    setSecondCat(null);
+  }, [firstCat]);
+
+  const firstCategory = {
+    get: firstCat,
+    set: setCat,
+  };
+
+  const secondCategory = {
+    get: secondCat,
+    set: setSecondCat,
+  };
+
+  return {
+    firstCategory,
+    secondCategory,
+    menu,
+  };
 }

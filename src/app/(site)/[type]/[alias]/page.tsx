@@ -3,16 +3,18 @@ import getMenu from '@/api/get-menu';
 import getPage from '@/api/get-page';
 import styles from './page.module.css';
 import Htag from '@/components/htag/htag';
-import Ptag from '@/components/ptag/ptag';
 import Tag from '@/components/tag/tag';
 import { EHtag } from '@/enums/htag';
 import { EColor } from '@/enums/color';
-import { ESize } from '@/enums/size';
 import { Metadata } from 'next';
 import { firstLevelMenu } from '@/helpers/first-category';
+import getProduct from '@/api/get-product';
+import HhCard from '@/components/hh-card/hh-card';
+import Advantages from '@/components/advantages/advantages';
+import Product from '@/components/product/product';
 
 interface IParams {
-  params: { alias: string };
+  params: { alias: string; type: string };
 }
 
 export async function generateStaticParams() {
@@ -28,7 +30,6 @@ export async function generateStaticParams() {
       ),
     );
   }
-
   return res;
 }
 
@@ -42,32 +43,35 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
 
 async function PageProducts({ params }: IParams) {
   const page = await getPage(params.alias);
-  if (!page || !params) {
+  const products = await getProduct(page);
+  if (!page || !products || !params) {
     notFound();
   }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
         <Htag tag={EHtag.H1}>{page.title}</Htag>
-        {page && (
-          <Tag
-            color={EColor.Grey}
-            size={ESize.M}
-            aria-label={page.tags.length + 'элементов'}
-          >
-            {page.tags.length}
-          </Tag>
-        )}
+        <Tag color={EColor.Grey} aria-label={products.length + 'элементов'}>
+          {products.length}
+        </Tag>
+
+        {/* <Sort sort={sort} setSort={setSort} /> */}
       </div>
-      <div role="list"></div>
+      <div role="list">
+        {products.map((p) => (
+          <Product role="listitem" key={p._id} product={p} />
+        ))}
+      </div>
       <div className={styles.hhTitle}>
         <Htag tag={EHtag.H2}>Вакансии - {page.category}</Htag>
-        <Tag color={EColor.Red} size={ESize.M}></Tag>
+        <Tag color={EColor.Red}>hh.ru</Tag>
       </div>
+      {page.hh && <HhCard {...page.hh} />}
       {page.advantages && page.advantages.length > 0 && (
         <>
           <Htag tag={EHtag.H2}>Преимущства</Htag>
-          <Ptag>{page.advantages.join(', ')}</Ptag>
+          <Advantages advantages={page.advantages} />
         </>
       )}
       {page.seoText && (
@@ -78,7 +82,7 @@ async function PageProducts({ params }: IParams) {
       )}
       <Htag tag={EHtag.H2}>Получаемые навыки</Htag>
       {page.tags.map((t) => (
-        <Tag key={t} color={EColor.Green}>
+        <Tag key={t} color={EColor.Grey}>
           {t}
         </Tag>
       ))}
