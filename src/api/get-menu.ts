@@ -1,9 +1,9 @@
-import { MenuItem } from '@/interfaces/menu.interface';
+import { IMenuItem } from '@/interfaces/menu.interface';
 import { API } from './api';
 
 export default async function getMenu(
   firstCategory: number,
-): Promise<MenuItem[]> {
+): Promise<IMenuItem[]> {
   const res = await fetch(API.topPage.find, {
     method: 'POST',
     body: JSON.stringify({
@@ -14,6 +14,6 @@ export default async function getMenu(
   if (!res.ok) {
     throw new Error('Failed to fetch data: ' + res.statusText);
   }
-  const data = (await res.json()) as Promise<MenuItem[]>;
+  const data = (await res.json()) as Promise<IMenuItem[]>;
   return data;
 }

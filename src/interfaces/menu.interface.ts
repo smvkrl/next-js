@@ -1,21 +1,21 @@
 import { ETopLevelCategory } from '@/enums/top-level-category';
 
-export interface PageItem {
+export interface IPageItem {
   alias: string;
   title: string;
   _id: string;
   category: string;
 }
 
-export interface MenuItem {
+export interface IMenuItem {
   _id: {
     secondCategory: string;
   };
   isOpened?: boolean;
-  pages: PageItem[];
+  pages: IPageItem[];
 }
 
-export interface FirstLevelMenuItem {
+export interface IFirstLevelMenuItem {
   route: string;
   name: string;
   icon: JSX.Element;

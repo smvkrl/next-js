@@ -1,6 +1,6 @@
-import { ProductModel } from '@/interfaces/product.interface';
+import { IProductModel } from '@/interfaces/product.interface';
 
 export interface ProductsProps {
-  products: ProductModel[];
+  products: IProductModel[];
   title: string;
 }

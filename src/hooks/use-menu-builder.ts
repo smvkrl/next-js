@@ -1,13 +1,13 @@
 import getMenu from '@/api/get-menu';
 import { ETopLevelCategory } from '@/enums/top-level-category';
-import { MenuItem } from '@/interfaces/menu.interface';
+import { IMenuItem } from '@/interfaces/menu.interface';
 import { useEffect, useState } from 'react';
 
 export default function useMenuBuilder(
   firstLevelCategory: ETopLevelCategory = ETopLevelCategory.Courses,
 ) {
   const [firstCat, setCat] = useState(firstLevelCategory);
-  const [menu, setMenu] = useState<MenuItem[]>();
+  const [menu, setMenu] = useState<IMenuItem[]>();
   useEffect(() => {
     const menu = async () => {
       setMenu(await getMenu(firstCat));

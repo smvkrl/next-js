@@ -5,7 +5,7 @@ import { HTMLAttributes } from 'react';
 import { cn } from '@/helpers/class-names';
 import { ETopLevelCategory } from '@/enums/top-level-category';
 import { firstLevelMenu } from '@/helpers/first-category';
-import { PageItem } from '@/interfaces/menu.interface';
+import { IPageItem } from '@/interfaces/menu.interface';
 import { usePathname } from 'next/navigation';
 import useMenuBuilder from '@/hooks/use-menu-builder';
 import styles from './menu.module.css';
@@ -74,7 +74,7 @@ function Menu({ ...props }: HTMLAttributes<HTMLDivElement>) {
     );
   }
 
-  function buildThirdLevel(pages: PageItem[]) {
+  function buildThirdLevel(pages: IPageItem[]) {
     if (!menu) {
       return null;
     }

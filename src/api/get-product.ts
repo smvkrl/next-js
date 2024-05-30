@@ -1,10 +1,10 @@
-import { ProductModel } from '@/interfaces/product.interface';
-import { PageItem } from '@/interfaces/menu.interface';
+import { IProductModel } from '@/interfaces/product.interface';
+import { IPageItem } from '@/interfaces/menu.interface';
 import { API } from './api';
 
 export default async function getProduct(
-  page: PageItem,
-): Promise<ProductModel[]> {
+  page: IPageItem,
+): Promise<IProductModel[]> {
   const res = await fetch(API.product.find, {
     method: 'POST',
     body: JSON.stringify({
@@ -16,6 +16,6 @@ export default async function getProduct(
   if (!res.ok) {
     throw new Error('Failed to fetch data: ' + res.statusText);
   }
-  const data = (await res.json()) as Promise<ProductModel[]>;
+  const data = (await res.json()) as Promise<IProductModel[]>;
   return data;
 }

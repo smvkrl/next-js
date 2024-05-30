@@ -1,6 +1,6 @@
 import { EOrder } from '@/enums/order';
 import { ESort } from '@/enums/sort';
-import { ProductModel } from '@/interfaces/product.interface';
+import { IProductModel } from '@/interfaces/product.interface';
 
 export interface SortActions {
   type: ESort;
@@ -10,7 +10,7 @@ export interface SortActions {
 export interface ISortReducerState {
   sort: ESort;
   order: EOrder;
-  products: ProductModel[];
+  products: IProductModel[];
 }
 
 export const sortReducer = (

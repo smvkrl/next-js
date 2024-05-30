@@ -2,14 +2,14 @@ import currencyFormatter from '@/helpers/currency-formatter';
 import styles from './hh-card.module.css';
 import RateIcon from './rate.svg';
 import { cn } from '@/helpers/class-names';
-import { HhData } from '@/interfaces/page.interface';
+import { IHhData } from '@/interfaces/page.interface';
 
 function HhCard({
   count,
   juniorSalary,
   middleSalary,
   seniorSalary,
-}: HhData): JSX.Element {
+}: IHhData): JSX.Element {
   return (
     <div className={styles.hh}>
       <div className={cn([styles.count, styles.card])}>

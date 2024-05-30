@@ -1,9 +1,9 @@
-export interface ProductCharacteristic {
+export interface IProductCharacteristic {
   value: string;
   name: string;
 }
 
-export interface ReviewModel {
+export interface IReviewModel {
   _id: string;
   name: string;
   title: string;
@@ -12,7 +12,7 @@ export interface ReviewModel {
   createdAt: Date;
 }
 
-export interface ProductModel {
+export interface IProductModel {
   _id: string;
   categories: string[];
   tags: string[];
@@ -22,13 +22,13 @@ export interface ProductModel {
   credit: number;
   oldPrice: number;
   description: string;
-  characteristics: ProductCharacteristic[];
+  characteristics: IProductCharacteristic[];
   createdAt: Date;
   updatedAt: Date;
   __v: number;
   image: string;
   initialRating: number;
-  reviews: ReviewModel[];
+  reviews: IReviewModel[];
   reviewCount: number;
   reviewAvg?: number;
   advantages?: string;

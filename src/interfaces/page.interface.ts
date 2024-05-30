@@ -1,12 +1,12 @@
 import { ETopLevelCategory } from '@/enums/top-level-category';
 
-export interface TopPageAdvantage {
+export interface ITopPageAdvantage {
   _id: string;
   title: string;
   description: string;
 }
 
-export interface HhData {
+export interface IHhData {
   _id: string;
   count: number;
   juniorSalary: number;
@@ -15,7 +15,7 @@ export interface HhData {
   updatedAt: Date;
 }
 
-export interface TopPageModel {
+export interface ITopPageModel {
   tags: string[];
   _id: string;
   secondCategory: string;
@@ -27,8 +27,8 @@ export interface TopPageModel {
   metaTitle: string;
   metaDescription: string;
   firstCategory: ETopLevelCategory;
-  advantages?: TopPageAdvantage[];
+  advantages?: ITopPageAdvantage[];
   createdAt: Date;
   updatedAt: Date;
-  hh?: HhData;
+  hh?: IHhData;
 }
