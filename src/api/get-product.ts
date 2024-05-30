@@ -17,6 +17,5 @@ export default async function getProduct(
     throw new Error('Failed to fetch data: ' + res.statusText);
   }
   const data = (await res.json()) as Promise<ProductModel[]>;
-
   return data;
 }

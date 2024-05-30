@@ -1,10 +1,10 @@
-const currencyFormatter = (num: number, lang = 'ru-RU') => (
-  <>
-    {new Intl.NumberFormat(lang, {
+function currencyFormatter(num: number, lang = 'ru-RU'): string {
+  {
+    return new Intl.NumberFormat(lang, {
       style: 'currency',
       currency: 'RUB',
       maximumFractionDigits: 0,
-    }).format(num)}
-  </>
-);
+    }).format(num);
+  }
+}
 export default currencyFormatter;

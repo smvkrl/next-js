@@ -5,7 +5,7 @@ function Search() {
   return (
     <div className={styles.search}>
       <Loupe />
-      <span>Search</span>
+      <span> Search</span>
     </div>
   );
 }

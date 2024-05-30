@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import getMenu from '@/api/get-menu';
 import getPage from '@/api/get-page';
 import styles from './page.module.css';
@@ -11,11 +10,14 @@ import { firstLevelMenu } from '@/helpers/first-category';
 import getProduct from '@/api/get-product';
 import HhCard from '@/components/hh-card/hh-card';
 import Advantages from '@/components/advantages/advantages';
-import Product from '@/components/product/product';
+import { notFound } from 'next/navigation';
+import Products from '@/components/products/products';
 
 interface IParams {
   params: { alias: string; type: string };
 }
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   let res: { type: string; alias: string }[] = [];
@@ -35,6 +37,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: IParams): Promise<Metadata> {
   const page = await getPage(params.alias);
+  if (!page || !params) {
+    notFound();
+  }
   return {
     title: page?.metaTitle,
     description: page?.metaDescription,
@@ -44,25 +49,14 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
 async function PageProducts({ params }: IParams) {
   const page = await getPage(params.alias);
   const products = await getProduct(page);
+
   if (!page || !products || !params) {
     notFound();
   }
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.title}>
-        <Htag tag={EHtag.H1}>{page.title}</Htag>
-        <Tag color={EColor.Grey} aria-label={products.length + 'элементов'}>
-          {products.length}
-        </Tag>
-
-        {/* <Sort sort={sort} setSort={setSort} /> */}
-      </div>
-      <div role="list">
-        {products.map((p) => (
-          <Product role="listitem" key={p._id} product={p} />
-        ))}
-      </div>
+      <Products products={products} title={page.title} />
       <div className={styles.hhTitle}>
         <Htag tag={EHtag.H2}>Вакансии - {page.category}</Htag>
         <Tag color={EColor.Red}>hh.ru</Tag>
