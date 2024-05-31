@@ -13,20 +13,21 @@ import { EHtag } from '@/enums/htag';
 import { EColor } from '@/enums/color';
 import Htag from '../htag/htag';
 import { sortReducer } from './sort.reducer';
-import { EOrder } from '@/enums/order';
 
 export default function Products({ products, title }: ProductsProps) {
-  const [{ products: sortedProducts, sort, order }, dispatchSort] = useReducer(
-    sortReducer,
-    { products, sort: ESort.Rating, order: EOrder.Asc },
-  );
+  const [{ products: sortedProducts, sort, isOrderDesc }, dispatchSort] =
+    useReducer(sortReducer, {
+      products,
+      sort: ESort.Rating,
+      isOrderDesc: true,
+    });
 
-  const setSort = (sort: ESort, order: EOrder) => {
+  const setSort = (sort: ESort, order: boolean) => {
     dispatchSort({ type: sort, payload: order });
   };
 
   useEffect(() => {
-    dispatchSort({ type: ESort.Rating, payload: EOrder.Asc });
+    dispatchSort({ type: ESort.Rating, payload: true });
   }, [products]);
 
   return (
@@ -36,7 +37,7 @@ export default function Products({ products, title }: ProductsProps) {
         <Tag color={EColor.Grey} aria-label={products.length + 'элементов'}>
           {products.length}
         </Tag>
-        <Sort sort={sort} order={order} setSort={setSort} />
+        <Sort sort={sort} isOrderDesc={isOrderDesc} setSort={setSort} />
       </div>
       <div role="list">
         {sortedProducts.map((p) => (

@@ -1,15 +1,14 @@
-import { EOrder } from '@/enums/order';
 import { ESort } from '@/enums/sort';
 import { IProductModel } from '@/interfaces/product.interface';
 
 export interface SortActions {
   type: ESort;
-  payload: EOrder;
+  payload: boolean;
 }
 
 export interface ISortReducerState {
   sort: ESort;
-  order: EOrder;
+  isOrderDesc: boolean;
   products: IProductModel[];
 }
 
@@ -22,13 +21,13 @@ export const sortReducer = (
       return {
         ...state,
         sort: ESort.Rating,
-        order: action.payload,
+        isOrderDesc: action.payload,
         products: state.products.sort((a, b) =>
           a.initialRating > b.initialRating
-            ? action.payload == EOrder.Asc
+            ? action.payload
               ? 1
               : -1
-            : action.payload == EOrder.Asc
+            : action.payload
             ? -1
             : 1,
         ),
@@ -37,13 +36,13 @@ export const sortReducer = (
       return {
         ...state,
         sort: ESort.Price,
-        order: action.payload,
+        isOrderDesc: action.payload,
         products: state.products.sort((a, b) =>
           a.price > b.price
-            ? action.payload == EOrder.Asc
+            ? action.payload
               ? -1
               : 1
-            : action.payload == EOrder.Asc
+            : action.payload
             ? 1
             : -1,
         ),

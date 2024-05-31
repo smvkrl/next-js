@@ -5,20 +5,19 @@ import styles from './Sort.module.css';
 import SortIcon from './sort.svg';
 import { cn } from '@/helpers/class-names';
 import { ESort } from '@/enums/sort';
-import { EOrder } from '@/enums/order';
 
 function Sort({
   sort = ESort.Rating,
-  order = EOrder.Asc,
+  isOrderDesc = true,
   setSort = () => null,
   className,
   ...props
 }: SortProps): JSX.Element {
-  function handleSort(sort: ESort) {
-    if (order == EOrder.Asc) {
-      setSort(sort, EOrder.Desc);
+  function handleSort(type: ESort) {
+    if (type == sort) {
+      setSort(type, !isOrderDesc);
     } else {
-      setSort(sort, EOrder.Asc);
+      setSort(type, true);
     }
   }
   return (
@@ -32,7 +31,7 @@ function Sort({
         onClick={() => handleSort(ESort.Rating)}
         className={cn([
           [styles.active, sort == ESort.Rating],
-          [styles.reverse, order == EOrder.Desc],
+          [styles.reverse, !isOrderDesc],
         ])}
         aria-selected={sort == ESort.Rating}
         aria-labelledby="sort rating"
@@ -46,14 +45,12 @@ function Sort({
         onClick={() => handleSort(ESort.Price)}
         className={cn([
           [styles.active, sort == ESort.Price],
-          [styles.reverse, order == EOrder.Desc],
+          [styles.reverse, !isOrderDesc],
         ])}
         aria-selected={sort == ESort.Price}
         aria-labelledby="sort price"
       >
-        <span className={cn([[styles.reverse, order == EOrder.Desc]])}>
-          <SortIcon className={styles.sortIcon} />
-        </span>
+        <SortIcon className={styles.sortIcon} />
         По цене
       </button>
     </div>
