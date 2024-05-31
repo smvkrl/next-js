@@ -9,6 +9,7 @@ import Rating from '@/components/rating/rating';
 import Ptag from '@/components/ptag/ptag';
 import Button from '@/components/button/button';
 import styles from './page.module.css';
+import Input from '@/components/input/input';
 
 function Home() {
   return (
@@ -28,6 +29,7 @@ function Home() {
         reprehenderit neque itaque laboriosam omnis accusamus obcaecati esse
         consequuntur, unde autem.
       </Ptag>
+      <Input placeholder={'test'} />
       <div className={styles.flex}>
         <Button>Hello</Button>
         <Button view={EView.Ghost} arrow={EArrDirection.Right}>

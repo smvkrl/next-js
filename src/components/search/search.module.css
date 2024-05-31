@@ -1,6 +1,19 @@
 .search {
-  padding: 10px;
-  color: (--white);
-  background-color: var(--gray-dark);
-  border-radius: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.input input {
+  width: 100%;
+}
+
+.search .button {
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  transform: translateY(-50%);
+
+  width: 30px;
+  height: 30px;
+  padding: 7px;
 }

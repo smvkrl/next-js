@@ -1,5 +1,19 @@
+'use client';
+
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
+
 function Search() {
-  return <div>Search</div>;
+  const searchParams = useSearchParams();
+  return <div>Search {searchParams.get('q')}</div>;
 }
 
-export default Search;
+function SearchPage() {
+  return (
+    <Suspense>
+      <Search />
+    </Suspense>
+  );
+}
+
+export default SearchPage;
