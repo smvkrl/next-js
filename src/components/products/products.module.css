@@ -2,7 +2,11 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 20px;
-  place-items: baseline left;
+  place-items: center left;
 
   margin-bottom: 30px;
+}
+
+.title h1 {
+  padding: 5px 0;
 }

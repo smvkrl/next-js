@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from './rating.module.css';
 import RatingProps from './rating.props';
 import StarIcon from './star.svg';
+import { cn } from '@/helpers/class-names';
 
 function Rating({
   isEditable = false,
@@ -15,14 +16,6 @@ function Rating({
   const [tempRating, setTempRating] = useState(rating);
   const ratingArray = new Array(5).fill(<></>);
 
-  // const ratingArrayRef = useRef<(HTMLSpanElement | null)[]>([]);
-
-  // function handleKeydown(e: KeyboardEvent) {
-  //   if (!isEditable || !setRating) {
-  //     return;
-  //   }
-  // }
-
   function handleClick() {
     if (isEditable && setRating) {
       setRating(tempRating);
@@ -32,18 +25,15 @@ function Rating({
 
   function constructRating(currentRating: number) {
     const updatedArray = ratingArray.map((_, i) => {
-      let cn = `${styles.star}`;
-      if (tempRating) {
-        cn += tempRating > i ? ` ${styles.fill}` : '';
-      } else {
-        cn += currentRating > i ? ` ${styles.fill}` : '';
-      }
-      cn += isEditable ? ` ${styles.editable}` : '';
       return (
         <span
           key={i}
-          className={cn}
-          // ref={(r) => ratingArrayRef.current.push(r)}
+          className={cn(
+            styles.star,
+            [styles.fill, tempRating > i],
+            [styles.fill, currentRating > i],
+            [styles.editable, isEditable],
+          )}
           onMouseEnter={() => isEditable && setTempRating(i + 1)}
           onClick={handleClick}
           tabIndex={isEditable ? 0 : -1}

@@ -11,12 +11,12 @@ function HhCard({
   seniorSalary,
 }: IHhData): JSX.Element {
   return (
-    <div className={styles.hh}>
-      <div className={cn([styles.count, styles.card])}>
+    <section className={styles.hh}>
+      <article className={cn(styles.count, styles.card)}>
         <div className={styles.title}>Всего вакансий</div>
         <div className={styles.countValue}>{count}</div>
-      </div>
-      <div className={cn([styles.salary, styles.card])}>
+      </article>
+      <article className={cn(styles.salary, styles.card)}>
         <div>
           <div className={styles.title}>Начальный</div>
           <div className={styles.salaryValue}>
@@ -28,7 +28,7 @@ function HhCard({
             <RateIcon />
           </div>
         </div>
-        <div>
+        <article>
           <div className={styles.title}>Средний</div>
           <div className={styles.salaryValue}>
             {currencyFormatter(middleSalary)}
@@ -38,8 +38,8 @@ function HhCard({
             <RateIcon className={styles.filled} />
             <RateIcon />
           </div>
-        </div>
-        <div>
+        </article>
+        <article>
           <div className={styles.title}>Профессионал</div>
           <div className={styles.salaryValue}>
             {currencyFormatter(seniorSalary)}
@@ -49,9 +49,9 @@ function HhCard({
             <RateIcon className={styles.filled} />
             <RateIcon className={styles.filled} />
           </div>
-        </div>
-      </div>
-    </div>
+        </article>
+      </article>
+    </section>
   );
 }
 

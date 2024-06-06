@@ -1,8 +1,8 @@
 .product {
   display: grid;
   grid-template-columns:
-    [logo-start] 70px [logo-end] 30px [title-start] calc(50% - 100px)
-    [middle] 1fr [price-start] auto [price-end] 40px [credit-start] auto [credit-end] 40px [rate-start] auto [rate-end];
+    [logo-start] 70px [logo-end] 10px [title-start] calc(50% - 100px)
+    [middle] 1fr [price-start] auto [price-end] 30px [credit-start] auto [credit-end] 30px [rate-start] auto [rate-end];
   margin-top: 30px;
   padding: 30px;
 }
@@ -246,15 +246,9 @@
     grid-template-columns: 70px 30px 1fr;
   }
 
+  .rating,
+  .credit,
   .price {
-    margin-bottom: 10px;
-  }
-
-  .credit {
-    margin-bottom: 10px;
-  }
-
-  .rating {
     margin-bottom: 10px;
   }
 }

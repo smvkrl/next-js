@@ -22,30 +22,34 @@ export const sortReducer = (
         ...state,
         sort: ESort.Rating,
         isOrderDesc: action.payload,
-        products: state.products.sort((a, b) =>
-          a.initialRating > b.initialRating
-            ? action.payload
-              ? 1
-              : -1
-            : action.payload
-            ? -1
-            : 1,
-        ),
+        products: state.products
+          .slice()
+          .sort((a, b) =>
+            a.initialRating > b.initialRating
+              ? action.payload
+                ? 1
+                : -1
+              : action.payload
+              ? -1
+              : 1,
+          ),
       };
     case ESort.Price:
       return {
         ...state,
         sort: ESort.Price,
         isOrderDesc: action.payload,
-        products: state.products.sort((a, b) =>
-          a.price > b.price
-            ? action.payload
-              ? -1
-              : 1
-            : action.payload
-            ? 1
-            : -1,
-        ),
+        products: state.products
+          .slice()
+          .sort((a, b) =>
+            a.price > b.price
+              ? action.payload
+                ? -1
+                : 1
+              : action.payload
+              ? 1
+              : -1,
+          ),
       };
     default:
       throw new Error('Неверный тип сортировки');

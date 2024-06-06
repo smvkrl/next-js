@@ -21,18 +21,18 @@ function Sort({
     }
   }
   return (
-    <div className={cn([className, styles.sort])} {...props}>
+    <div className={cn(className, styles.sort)} {...props}>
       <div className={styles.sortName} id="sort">
         Сортировка
       </div>
       <button
         id={ESort.Rating}
-        role="sort"
         onClick={() => handleSort(ESort.Rating)}
-        className={cn([
+        className={cn(
           [styles.active, sort == ESort.Rating],
           [styles.reverse, !isOrderDesc],
-        ])}
+        )}
+        role="sort"
         aria-selected={sort == ESort.Rating}
         aria-labelledby="sort rating"
       >
@@ -41,12 +41,12 @@ function Sort({
       </button>
       <button
         id={ESort.Price}
-        role="sort"
         onClick={() => handleSort(ESort.Price)}
-        className={cn([
+        className={cn(
           [styles.active, sort == ESort.Price],
           [styles.reverse, !isOrderDesc],
-        ])}
+        )}
+        role="sort"
         aria-selected={sort == ESort.Price}
         aria-labelledby="sort price"
       >

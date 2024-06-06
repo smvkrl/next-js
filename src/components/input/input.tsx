@@ -9,9 +9,9 @@ function Input(
 ): JSX.Element {
   const isError = error ? true : false;
   return (
-    <div className={cn([className, styles.inputWrapper])}>
+    <div className={cn(className, styles.inputWrapper)}>
       <input
-        className={cn([styles.input, [styles.error, isError]])}
+        className={cn(styles.input, [styles.error, isError])}
         ref={ref}
         {...props}
       />

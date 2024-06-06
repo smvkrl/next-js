@@ -1,6 +1,6 @@
-type ClassNameRecord = [string, boolean?] | string | undefined;
+type ClassNameRecord = [string, boolean] | string | undefined;
 
-export function cn(arr: ClassNameRecord[]): string {
+export function cn(...arr: ClassNameRecord[]): string {
   return arr
     .map((record) => {
       if (!record) {

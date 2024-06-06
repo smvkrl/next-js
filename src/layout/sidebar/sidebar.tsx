@@ -8,7 +8,7 @@ import Search from '@/components/search/search';
 
 function Sidebar({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div {...props} className={cn([styles.sidebar, className])}>
+    <div {...props} className={cn(styles.sidebar, className)}>
       <Link href={'/'}>
         <Logo />
       </Link>

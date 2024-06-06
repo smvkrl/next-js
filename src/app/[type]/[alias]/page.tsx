@@ -63,13 +63,13 @@ async function PageProducts({ params }: IParams) {
       </div>
       {page.hh && <HhCard {...page.hh} />}
       {page.advantages && page.advantages.length > 0 && (
-        <>
-          <Htag tag={EHtag.H2}>Преимущства</Htag>
+        <section>
+          <Htag tag={EHtag.H2}>Преимущeства</Htag>
           <Advantages advantages={page.advantages} />
-        </>
+        </section>
       )}
       {page.seoText && (
-        <div
+        <section
           className={styles.seo}
           dangerouslySetInnerHTML={{ __html: page.seoText }}
         />

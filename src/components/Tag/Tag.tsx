@@ -1,6 +1,7 @@
 import { ESize } from '@/enums/size';
 import styles from './tag.module.css';
 import TagProps from './tag.props';
+import { cn } from '@/helpers/class-names';
 
 function Tag({
   size = ESize.M,
@@ -10,13 +11,18 @@ function Tag({
   children,
   ...props
 }: TagProps) {
-  let cn = `${className} ${styles.tag} ${styles[size]}`;
-  if (color) {
-    cn += ` ${styles.color} ${styles[color]}`;
-  }
-
+  const isColor = color ? true : false;
   return (
-    <div className={cn} {...props}>
+    <div
+      className={cn(
+        className,
+        styles.tag,
+        styles[size],
+        [styles.color, isColor],
+        [styles[color ?? 0], isColor],
+      )}
+      {...props}
+    >
       {href ? <a href={href}>{children}</a> : <>{children}</>}
     </div>
   );

@@ -8,34 +8,44 @@ import currencyFormatter from '@/helpers/currency-formatter';
 import Divider from '../divider/divider';
 import Rating from '../rating/rating';
 import { cn } from '@/helpers/class-names';
+import Image from 'next/image';
+import { EArrDirection } from '@/enums/arr-direction';
+import { declOfNum } from '@/helpers/decl-num';
+import { MouseEventHandler, useState } from 'react';
+import Review from '../review/review';
+import ReviewForm from '../review-form/review-form';
 
 function Product({ product, className, ...props }: ProductProps) {
+  const [isReviewOpened, setIsReviewOpened] = useState(false);
+
+  const handleOpenReview: MouseEventHandler<HTMLButtonElement> = () => {
+    setIsReviewOpened(!isReviewOpened);
+  };
+
   return (
-    <div className={className} {...props}>
+    <article className={className} {...props}>
       <div className={styles.product}>
         <div className={styles.logo}>
-          {/* <Image
-            src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
+          <Image
+            src={product.image}
             alt={product.title}
-            width={70}
-            height={70}
-          /> */}
+            width={69}
+            height={69}
+          />
         </div>
         <div className={styles.title}>{product.title}</div>
         <div className={styles.price}>
-          <span>
-            <span className="visuallyHidden">цена </span>
-            {currencyFormatter(product.price)}
-          </span>
+          <span className="visuallyHidden">цена</span>
+          {currencyFormatter(product.price)}
           {product.oldPrice && (
             <Tag className={styles.oldPrice} color={EColor.Green}>
-              <span className="visuallyHidden">скидка </span>
+              <span className="visuallyHidden">скидка</span>
               {currencyFormatter(product.price - product.oldPrice)}
             </Tag>
           )}
         </div>
         <div className={styles.credit}>
-          <span className="visuallyHidden">кредит </span>
+          <span className="visuallyHidden">кредит</span>
           {currencyFormatter(product.credit)}/
           <span className={styles.month}>мес</span>
         </div>
@@ -59,7 +69,10 @@ function Product({ product, className, ...props }: ProductProps) {
           кредит
         </div>
         <div className={styles.rateTitle}>
-          <a href="#ref">{product.reviewCount}</a>
+          <a href="#ref">
+            {product.reviewCount}{' '}
+            {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+          </a>
         </div>
         <Divider className={styles.hr} />
         <div className={styles.description}>{product.description}</div>
@@ -86,26 +99,32 @@ function Product({ product, className, ...props }: ProductProps) {
             </div>
           )}
         </div>
-        <Divider className={cn([styles.hr, styles.hr2])} />
+        <Divider className={cn(styles.hr, styles.hr2)} />
         <div className={styles.actions}>
           <Button view={EView.Primary}>Узнать подробнее</Button>
-          <Button view={EView.Ghost} className={styles.reviewButton}>
+          <Button
+            view={EView.Ghost}
+            arrow={isReviewOpened ? EArrDirection.Down : EArrDirection.Right}
+            className={styles.reviewButton}
+            onClick={handleOpenReview}
+          >
             Читать отзывы
           </Button>
         </div>
       </div>
-      {/* <div>
-				<Card color='blue' className={styles.reviews}>
-					{product.reviews.map(r => (
-						<div key={r._id}>
-							<Review review={r} />
-							<Divider />
-						</div>
-					))}
-					<ReviewForm productId={product._id} isOpened={isReviewOpened} />
-				</Card>
-			</div> */}
-    </div>
+
+      {isReviewOpened ? (
+        <div className={styles.reviews}>
+          {product.reviews.map((r) => (
+            <article key={r._id}>
+              <Review review={r} />
+              <Divider />
+            </article>
+          ))}
+          <ReviewForm productId={product._id} isOpened={isReviewOpened} />
+        </div>
+      ) : null}
+    </article>
   );
 }
 export default Product;

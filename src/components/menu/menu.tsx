@@ -5,7 +5,7 @@ import { HTMLAttributes } from 'react';
 import { cn } from '@/helpers/class-names';
 import { ETopLevelCategory } from '@/enums/top-level-category';
 import { firstLevelMenu } from '@/helpers/first-category';
-import { IPageItem } from '@/interfaces/menu.interface';
+import { IFirstLevelMenuItem, IPageItem } from '@/interfaces/menu.interface';
 import { usePathname } from 'next/navigation';
 import useMenuBuilder from '@/hooks/use-menu-builder';
 import styles from './menu.module.css';
@@ -17,6 +17,9 @@ function Menu({ ...props }: HTMLAttributes<HTMLDivElement>) {
 
   const path = usePathname();
 
+  function handleSetFirstCategory(item: IFirstLevelMenuItem) {
+    firstCategory.set(item.id);
+  }
   function handleSetSecondCategory(cat: string) {
     secondCategory.set(cat === secondCategory.get ? null : cat);
   }
@@ -27,11 +30,11 @@ function Menu({ ...props }: HTMLAttributes<HTMLDivElement>) {
         {firstLevelMenu.map((item) => (
           <li key={item.id}>
             <div
-              className={cn([
-                styles.firstLevel,
-                [styles.firstLevelActive, item.id === firstCategory.get],
+              className={cn(styles.firstLevel, [
+                styles.firstLevelActive,
+                item.id === firstCategory.get,
               ])}
-              onClick={() => firstCategory.set(item.id)}
+              onClick={() => handleSetFirstCategory(item)}
             >
               {item.icon}
               <span>
@@ -54,12 +57,9 @@ function Menu({ ...props }: HTMLAttributes<HTMLDivElement>) {
         {menu.map((item) => (
           <li key={item._id.secondCategory}>
             <button
-              className={cn([
-                styles.secondLevel,
-                [
-                  styles.secondLevelActive,
-                  item._id.secondCategory === secondCategory.get,
-                ],
+              className={cn(styles.secondLevel, [
+                styles.secondLevelActive,
+                item._id.secondCategory === secondCategory.get,
               ])}
               onClick={() => handleSetSecondCategory(item._id.secondCategory)}
             >
@@ -67,7 +67,7 @@ function Menu({ ...props }: HTMLAttributes<HTMLDivElement>) {
             </button>
             {item._id.secondCategory === secondCategory.get
               ? buildThirdLevel(item.pages)
-              : ''}
+              : null}
           </li>
         ))}
       </ul>
@@ -86,9 +86,9 @@ function Menu({ ...props }: HTMLAttributes<HTMLDivElement>) {
             <li key={p._id}>
               <Link
                 href={link}
-                className={cn([
-                  styles.thirdLevel,
-                  [styles.thirdLevelActive, link === path],
+                className={cn(styles.thirdLevel, [
+                  styles.thirdLevelActive,
+                  link === path,
                 ])}
               >
                 {p.category}

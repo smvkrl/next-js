@@ -58,18 +58,18 @@
       'footer';
     grid-template-columns: minmax(320px, 1fr);
     gap: 10px;
-  }
 
-  .header {
-    display: block;
-  }
+    & .header {
+      display: block;
+    }
 
-  .sidebar {
-    display: none;
-  }
+    & .sidebar {
+      display: none;
+    }
 
-  .main {
-    gap: 20px;
-    padding: 15px;
+    & .main {
+      gap: 20px;
+      padding: 15px;
+    }
   }
 }
