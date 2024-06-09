@@ -25,54 +25,60 @@ function Product({ product, className, ...props }: ProductProps) {
   return (
     <article className={className} {...props}>
       <div className={styles.product}>
-        <div className={styles.logo}>
+        <div className={styles.head}>
           <Image
+            className={styles.logo}
             src={product.image}
             alt={product.title}
-            width={69}
-            height={69}
+            width={70}
+            height={70}
           />
+          <div className={styles.title}>{product.title}</div>
+          <div className={styles.tags}>
+            {product.categories.map((c) => (
+              <Tag key={c} className={styles.category} color={EColor.Grey}>
+                {c}
+              </Tag>
+            ))}
+          </div>
         </div>
-        <div className={styles.title}>{product.title}</div>
-        <div className={styles.price}>
-          <span className="visuallyHidden">цена</span>
-          {currencyFormatter(product.price)}
-          {product.oldPrice && (
-            <Tag className={styles.oldPrice} color={EColor.Green}>
-              <span className="visuallyHidden">скидка</span>
-              {currencyFormatter(product.price - product.oldPrice)}
-            </Tag>
-          )}
-        </div>
-        <div className={styles.credit}>
-          <span className="visuallyHidden">кредит</span>
-          {currencyFormatter(product.credit)}/
-          <span className={styles.month}>мес</span>
-        </div>
-        <div className={styles.rating}>
-          <span className="visuallyHidden">
-            {'рейтинг ' + (product.reviewAvg ?? product.initialRating)}
-          </span>
-          <Rating rating={product.reviewAvg ?? product.initialRating} />
-        </div>
-        <div className={styles.tags}>
-          {product.categories.map((c) => (
-            <Tag key={c} className={styles.category} color={EColor.Grey}>
-              {c}
-            </Tag>
-          ))}
-        </div>
-        <div className={styles.priceTitle} aria-hidden={true}>
-          цена
-        </div>
-        <div className={styles.creditTitle} aria-hidden={true}>
-          кредит
-        </div>
-        <div className={styles.rateTitle}>
-          <a href="#ref">
-            {product.reviewCount}{' '}
-            {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
-          </a>
+
+        <div className={styles.score}>
+          <div className={styles.price}>
+            <span>
+              <span className="visuallyHidden">цена </span>
+              {currencyFormatter(product.price)}
+            </span>
+            {product.oldPrice && (
+              <Tag className={styles.oldPrice} color={EColor.Green}>
+                <span className="visuallyHidden">скидка </span>
+                {currencyFormatter(product.price - product.oldPrice)}
+              </Tag>
+            )}
+          </div>
+          <div className={styles.credit}>
+            <span className="visuallyHidden">кредит </span>
+            {currencyFormatter(product.credit)}/
+            <span className={styles.month}>мес</span>
+          </div>
+          <div className={styles.rating}>
+            <span className="visuallyHidden">
+              {'рейтинг ' + (product.reviewAvg ?? product.initialRating)}
+            </span>
+            <Rating rating={product.reviewAvg ?? product.initialRating} />
+          </div>
+          <div className={styles.priceTitle} aria-hidden={true}>
+            цена
+          </div>
+          <div className={styles.creditTitle} aria-hidden={true}>
+            кредит
+          </div>
+          <div className={styles.rateTitle}>
+            <a href="#ref">
+              {product.reviewCount}{' '}
+              {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+            </a>
+          </div>
         </div>
         <Divider className={styles.hr} />
         <div className={styles.description}>{product.description}</div>

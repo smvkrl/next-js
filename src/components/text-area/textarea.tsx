@@ -7,15 +7,14 @@ function Textarea(
   { error, className, ...props }: TextAreaProps,
   ref: ForwardedRef<HTMLTextAreaElement>,
 ) {
-  const isError = error ? true : false;
   return (
     <div className={cn(className, styles.textareaWrapper)}>
       <textarea
-        className={cn(styles.textarea, [styles.error, isError])}
+        className={cn(styles.textarea, [styles.error, Boolean(error)])}
         ref={ref}
         {...props}
       />
-      {isError && <span className={styles.errorMessage}>{error?.message}</span>}
+      {error && <span className={styles.errorMessage}>{error?.message}</span>}
     </div>
   );
 }

@@ -1,17 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { ForwardedRef, forwardRef, useState } from 'react';
 import styles from './rating.module.css';
 import RatingProps from './rating.props';
 import StarIcon from './star.svg';
 import { cn } from '@/helpers/class-names';
 
-function Rating({
-  isEditable = false,
-  rating,
-  setRating,
-  ...props
-}: RatingProps) {
+function Rating(
+  { isEditable = false, rating, error, setRating, ...props }: RatingProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   const [rate, setRate] = useState(rating);
   const [tempRating, setTempRating] = useState(rating);
   const ratingArray = new Array(5).fill(<></>);
@@ -47,12 +45,13 @@ function Rating({
 
   return (
     <div
-      className={styles.wrapper}
+      className={cn(styles.wrapper, [styles.error, Boolean(error)])}
       onMouseLeave={() => setTempRating(rate)}
+      ref={ref}
       {...props}
     >
       {constructRating(tempRating)}
     </div>
   );
 }
-export default Rating;
+export default forwardRef(Rating);

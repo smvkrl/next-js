@@ -41,7 +41,7 @@ function Menu({ ...props }: HTMLAttributes<HTMLDivElement>) {
                 <Link href={`/${item.route}`}>{item.name}</Link>
               </span>
             </div>
-            {item.id === firstCategory.get ? buildSecondLevel() : ''}
+            {item.id === firstCategory.get ? buildSecondLevel() : null}
           </li>
         ))}
       </ul>
@@ -81,7 +81,7 @@ function Menu({ ...props }: HTMLAttributes<HTMLDivElement>) {
     return (
       <ul className={styles.thirdBlock}>
         {pages.map((p) => {
-          const link = `/courses/${p.alias}`;
+          const link = `/${firstLevelMenu[firstCategory.get].route}/${p.alias}`;
           return (
             <li key={p._id}>
               <Link

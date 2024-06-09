@@ -1,7 +1,7 @@
 .reviewForm {
   display: grid;
-  grid-template-columns: [start] auto 1fr auto [end];
-  gap: 20px 30px;
+  grid-template-columns: auto 1fr auto;
+  gap: 30px 20px;
   align-items: center;
 
   font-size: 14px;
@@ -10,7 +10,7 @@
 
 .description,
 .submit {
-  grid-column: start / end;
+  grid-column: 1 / -1;
 }
 
 .title {
@@ -22,9 +22,9 @@
 }
 
 .rating {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .panel {
@@ -61,7 +61,7 @@
 
 @media screen and (width <= 1100px) {
   .reviewForm {
-    grid-template-columns: [start] 1fr 1fr [end];
+    grid-template-columns: 1fr 1fr;
   }
 
   .title {
@@ -69,12 +69,12 @@
   }
 
   .rating {
-    grid-column: start / end;
+    grid-column: 1 / -1;
   }
 }
 
 @media screen and (width <= 640px) {
   .reviewForm {
-    grid-template-columns: [start] 1fr [end];
+    grid-template-columns: 1fr;
   }
 }

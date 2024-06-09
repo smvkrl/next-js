@@ -3,14 +3,7 @@ import styles from './tag.module.css';
 import TagProps from './tag.props';
 import { cn } from '@/helpers/class-names';
 
-function Tag({
-  size = ESize.M,
-  color,
-  href,
-  className,
-  children,
-  ...props
-}: TagProps) {
+function Tag({ size = ESize.M, color, href, className, children }: TagProps) {
   const isColor = color ? true : false;
   return (
     <div
@@ -21,7 +14,6 @@ function Tag({
         [styles.color, isColor],
         [styles[color ?? 0], isColor],
       )}
-      {...props}
     >
       {href ? <a href={href}>{children}</a> : <>{children}</>}
     </div>
