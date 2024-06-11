@@ -30,7 +30,6 @@
   grid-area: footer;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 .skipLink {
   position: fixed;
   top: 0;

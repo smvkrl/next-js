@@ -6,6 +6,7 @@ import Header from '@/layout/header/header';
 import Sidebar from '@/layout/sidebar/sidebar';
 import Footer from '@/layout/footer/footer';
 import { ReactElement } from 'react';
+import Up from '@/components/up/up';
 
 const notoSans = Noto_Sans_KR({
   weight: ['300', '400', '500', '700'],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: ReactElement }) {
           <main className={styles.main}>{children}</main>
           <Footer className={styles.footer} />
         </div>
+        <Up />
       </body>
     </html>
   );

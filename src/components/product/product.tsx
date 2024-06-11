@@ -1,29 +1,46 @@
-import { EView } from '@/enums/view';
-import Button from '../button/button';
-import { ProductProps } from './product.props';
-import styles from './product.module.css';
-import Tag from '../tag/tag';
+import { ForwardedRef, forwardRef, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+
+import { declOfNum } from '@/helpers/decl-num';
+
+import { EArrDirection } from '@/enums/arr-direction';
 import { EColor } from '@/enums/color';
+import { EView } from '@/enums/view';
+
+import Button from '../button/button';
 import currencyFormatter from '@/helpers/currency-formatter';
 import Divider from '../divider/divider';
 import Rating from '../rating/rating';
-import { cn } from '@/helpers/class-names';
-import Image from 'next/image';
-import { EArrDirection } from '@/enums/arr-direction';
-import { declOfNum } from '@/helpers/decl-num';
-import { MouseEventHandler, useState } from 'react';
 import Review from '../review/review';
 import ReviewForm from '../review-form/review-form';
+import Tag from '../tag/tag';
 
-function Product({ product, className, ...props }: ProductProps) {
+import { ProductProps } from './product.props';
+import styles from './product.module.css';
+
+function Product(
+  { product, className, ...props }: ProductProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   const [isReviewOpened, setIsReviewOpened] = useState(false);
+  const reviewRef = useRef<HTMLDivElement | null>(null);
 
-  const handleOpenReview: MouseEventHandler<HTMLButtonElement> = () => {
+  useEffect(() => {
+    reviewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    reviewRef.current?.focus();
+  }, [isReviewOpened]);
+
+  const handleOpenReview = () => {
     setIsReviewOpened(!isReviewOpened);
   };
 
+  const scrollToReview = () => {
+    setIsReviewOpened(true);
+  };
+
   return (
-    <article className={className} {...props}>
+    <article className={className} {...props} ref={ref}>
       <div className={styles.product}>
         <div className={styles.head}>
           <Image
@@ -74,7 +91,7 @@ function Product({ product, className, ...props }: ProductProps) {
             кредит
           </div>
           <div className={styles.rateTitle}>
-            <a href="#ref">
+            <a href="#reviews" onClick={scrollToReview}>
               {product.reviewCount}{' '}
               {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
             </a>
@@ -105,7 +122,7 @@ function Product({ product, className, ...props }: ProductProps) {
             </div>
           )}
         </div>
-        <Divider className={cn(styles.hr, styles.hr2)} />
+        <Divider className={styles.hr} />
         <div className={styles.actions}>
           <Button view={EView.Primary}>Узнать подробнее</Button>
           <Button
@@ -120,7 +137,7 @@ function Product({ product, className, ...props }: ProductProps) {
       </div>
 
       {isReviewOpened ? (
-        <div className={styles.reviews}>
+        <div className={styles.reviews} ref={reviewRef}>
           {product.reviews.map((r) => (
             <article key={r._id}>
               <Review review={r} />
@@ -133,4 +150,4 @@ function Product({ product, className, ...props }: ProductProps) {
     </article>
   );
 }
-export default Product;
+export default motion(forwardRef(Product));

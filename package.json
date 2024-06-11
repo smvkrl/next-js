@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "debug": "cross-env NODE_OPTIONS='--inspect' next dev",
+    "style": "stylelint \"**/*.css\" --fix",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "stylelint": "stylelint \"**/*.css\" --fix"
+    "lint": "next lint"
   },
   "dependencies": {
+    "framer-motion": "^11.2.10",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
@@ -33,3 +34,4 @@
     "typescript-eslint": "^7.8.0"
   }
 }
+

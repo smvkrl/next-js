@@ -22,8 +22,8 @@ export default function Products({ products, title }: ProductsProps) {
       isOrderDesc: true,
     });
 
-  const setSort = (sort: ESort, order: boolean) => {
-    dispatchSort({ type: sort, payload: order });
+  const setSort = (sort: ESort, isOrderAsc: boolean) => {
+    dispatchSort({ type: sort, payload: isOrderAsc });
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function Products({ products, title }: ProductsProps) {
       </div>
       <div role="list">
         {sortedProducts.map((p) => (
-          <Product role="listitem" key={p._id} product={p} />
+          <Product role="listitem" key={p._id} product={p} layout />
         ))}
       </div>
     </>
