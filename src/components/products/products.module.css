@@ -10,3 +10,9 @@
 .title h1 {
   padding: 5px 0;
 }
+
+@media (width <= 640px) {
+  .title {
+    grid-template-columns: auto 1fr;
+  }
+}

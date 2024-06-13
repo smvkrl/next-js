@@ -3,6 +3,7 @@ import styles from './button.module.css';
 import { EArrDirection } from '@/enums/arr-direction';
 import { EView } from '@/enums/view';
 import Arrow from './arrow.svg';
+import { cn } from '@/helpers/class-names';
 
 function Button({
   view = EView.Primary,
@@ -11,17 +12,14 @@ function Button({
   children,
   ...props
 }: ButtonProps) {
-  const buttonStyle = `${className} ${styles.button} ${styles[view]}`;
   return (
-    <button className={buttonStyle} {...props}>
+    <button className={cn(className, styles.button, styles[view])} {...props}>
       {children}
       {arrow !== EArrDirection.None ? (
-        <span className={`${styles.arrow} ${styles[arrow]}`}>
+        <span className={cn(styles.arrow, styles[arrow])}>
           <Arrow />
         </span>
-      ) : (
-        ''
-      )}
+      ) : null}
     </button>
   );
 }
